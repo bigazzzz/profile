@@ -1,0 +1,5 @@
+---
+- name: install shell
+  package:
+    name: vim
+    state: present

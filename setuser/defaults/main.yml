@@ -1,0 +1,14 @@
+---
+# defaults file for biga
+username: biga
+shell: zsh
+
+packages:
+  - wget
+  - curl
+  - mc
+  - tmux
+  - git
+  - vim
+  - htop
+...

@@ -1,0 +1,30 @@
+---
+- name: install shell
+  package:
+    name: "{{ shell }}"
+    state: present
+
+- name: check shell executable is present
+  shell: "which {{ shell }}"
+  register: result
+  ignore_errors: true
+
+- fail:
+    msg: "this shell is not found! You need to install it first."
+  when: result.rc != 0
+
+- name: add user
+  user:
+    name: "{{ username }}"
+    shell: "{{ result.stdout }}"
+    state: present
+    update_password: on_create
+    password: "{{ lookup('password', '/tmp/userpassword length=20 chars=ascii_letters,digits,hexdigits') | password_hash('sha512') }}"
+
+- name: Allow user to have passwordless sudo
+  lineinfile:
+    dest: /etc/sudoers
+    state: present
+    regexp: "^{{ username }}"
+    line: "{{ username }} ALL=(ALL) NOPASSWD: ALL"
+    validate: 'visudo -cf %s'

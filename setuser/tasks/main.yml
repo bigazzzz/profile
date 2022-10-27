@@ -1,0 +1,15 @@
+---
+
+- name: install packages
+  package:
+    name: "{{ packages }}"
+    state: present
+
+- name: install root user with changed shell
+  import_tasks: create-sudo-user.yml
+  vars:
+    username: testuser
+    shell: bash
+
+- name: install vim
+  import_tasks: install-vim.yml
