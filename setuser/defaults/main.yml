@@ -1,6 +1,6 @@
 ---
 # defaults file for biga
-username: biga
+username: testuser
 shell: zsh
 
 packages:

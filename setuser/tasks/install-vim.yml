@@ -1,5 +1,12 @@
 ---
-- name: install shell
+- name: install vim
   package:
     name: vim
     state: present
+
+- name: Copy .vimrc config
+  copy:
+    src: vim.cfg
+    dest: "/home/{{ username }}/.vimrc"
+    owner: "{{ username }}"
+    group: "{{ username }}"
