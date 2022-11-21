@@ -35,4 +35,4 @@
 
 - name: print userpass
   debug:
-    msg: "password is {{ userpass }} "
+    msg: "password is {{ userpass }}"
