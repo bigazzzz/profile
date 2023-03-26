@@ -2,6 +2,9 @@
 # defaults file for biga
 username: testuser
 shell: zsh
+ssh_private_key: id_rsa
+ssh_public_key: id_rsa.pub
+ssh_home: /home/testuser/.ssh
 
 packages:
   - wget

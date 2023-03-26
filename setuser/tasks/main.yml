@@ -13,3 +13,11 @@
 
 - name: install vim
   import_tasks: install-vim.yml
+
+# - name: install oh-my-zsh
+#   import_tasks: install-oh-my-zsh.yml
+
+- name: add ssh config
+  import_tasks: ssh-config.yml
+  vars:
+    ssh_home: "/home/{{username}}/.ssh"

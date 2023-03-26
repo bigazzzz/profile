@@ -1,0 +1,36 @@
+---
+- name: Ensure SSH home dir exists
+  file:
+    path: "{{ ssh_home }}"
+    owner: "{{ username }}""
+    mode: 0700
+
+- name: Ensure SSH config exists
+  file:
+    path: "{{ ssh_home }}/config"
+    state: touch
+    owner: "{{ username }}"
+    mode: 0700
+  changed_when: false
+
+- name: Ensure SSH socket exists
+  file:
+    path: "{{ ssh_home }}/sockets"
+    state: touch
+    owner: "{{ username }}"
+    mode: 0700
+  changed_when: false
+
+- name: Ensure there is a public key
+  shell: ssh-keygen -f {{ ssh_private_key }} -N ''
+  args:
+    creates: "{{ ssh_private_key }}"
+
+- name: Ensure the keys have restricted permissions
+  file:
+    path: "{{ item }}"
+    owner: "{{ username }}"
+    mode: 0600
+  with_items:
+  - "{{ ssh_private_key }}"
+  - "{{ ssh_public_key }}"
