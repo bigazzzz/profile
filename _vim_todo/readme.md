@@ -6,7 +6,7 @@
 ```
 apt install vim -y
 tea -a .bashrc << EOF
-alias vi="vim
+alias vi="vim"
 EOF
 ```
 
@@ -18,8 +18,8 @@ EOF
 
 
 ```
-$sudo -s
-#curl -sL install-node.now.sh/lts | bash
+$ sudo -s
+# curl -sL install-node.now.sh/lts | bash
 ```
 
 Затем установить плагин yaml
